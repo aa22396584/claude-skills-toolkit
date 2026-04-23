@@ -1,21 +1,21 @@
 # claude-skills
 
-A two-skill toolkit for Claude Code power users:
+Claude Code 技能工具箱，兩枚配合使用效果最佳：
 
-| Skill | What it does | Use when |
+| 技能 | 功能 | 使用時機 |
 |---|---|---|
-| **skill-organizer** | 清理 `~/.claude/skills/` 目錄，把專屬專案的 skill 搬回該專案，全域只留跨專案工具 | skills 太多吃 context、session 變慢 |
-| **opencli-llm-advisors** | API 額度用完時，用瀏覽器驅動 Gemini/ChatGPT 當 fallback | Gemini/ChatGPT API 噴 429、想用免費的 Pro 模型 |
+| **skill-organizer** | 清理 `~/.claude/skills/`，將專案專屬技能搬回該專案，全域只留跨專案通用工具 | Skills 吃太多 context、session 變慢 |
+| **opencli-llm-advisors** | API 額度用完時，用瀏覽器驅動 Gemini/ChatGPT 作為 fallback | Gemini/ChatGPT API 噴 429、想用免費 Pro 模型 |
 
-**一起用最有效**：`skill-organizer` 減少 context 負載 → 讓 `opencli-llm-advisors` 跑更快、、省更多 tokens。
+**一起用最有效**：`skill-organizer` 減少 context 負載 → 讓 `opencli-llm-advisors` 跑更快、省更多 tokens。
 
 ---
 
 ## 安裝（選你要的）
 
 ```bash
-git clone https://github.com/ImL1s/claude-skills.git ~/claude-skills
-cd ~/claude-skills
+git clone https://github.com/ImL1s/claude-skills-toolkit.git ~/claude-skills-toolkit
+cd ~/claude-skills-toolkit
 
 # 兩個都裝
 ln -s "$(pwd)/skills/skill-organizer" ~/.claude/skills/skill-organizer
@@ -25,7 +25,18 @@ ln -s "$(pwd)/skills/opencli-llm-advisors" ~/.claude/skills/opencli-llm-advisors
 ln -s "$(pwd)/skills/skill-organizer" ~/.claude/skills/skill-organizer
 ```
 
-只要裝完重開 Claude Code session 就會自動吃到。
+裝完重開 Claude Code session 就會自動吃到技能描述，觸發關鍵字見各技能說明。
+
+### 首次設定（skill-organizer 可選）
+
+若要自訂專案根目錄，複製範例設定檔：
+
+```bash
+cp examples/.skill-organizer.example.json ~/.skill-organizer.json
+$EDITOR ~/.skill-organizer.json   # 設定你的 projects_root
+```
+
+跳過也可以，技能會在第一次執行時詢問並寫入檔案。
 
 ---
 
@@ -41,9 +52,9 @@ Session 變慢、context 快滿了？先整理：
 
 → 走 **Careful Mode**（9 步驟預覽 → 確認 → 執行），你會看到所有 skills 的分類計畫，按 `go` 才真的動。
 
-整理完後每次新 session context 變輕，skill 載入更快。
+整理完後每次新 session context 變輕，skills 載入更快。
 
-### 第二步：設定 `opencli-llm-advisors`（可選）
+### 第二步：設定 opencli-llm-advisors（可選）
 
 當你想用 AI advisor 但 API 額度滿了：
 
@@ -51,7 +62,7 @@ Session 變慢、context 快滿了？先整理：
 用 Gemini 問問看這個架構
 ```
 
-→ 會自動用瀏覽器開啟 Gemini，點選 Pro 模型，回傳答案給你。
+→ 會自動用瀏覽器開啟 Gemini，點選 Pro 模型，回傳答案。
 
 **需要先裝 [opencli](https://github.com/jackwener/opencli)**（`brew install opencli` 或 `pip install opencli`）。
 
@@ -85,12 +96,14 @@ Session 變慢、context 快滿了？先整理：
 | 已經用過一次，想要快又安全 | **Lazy** | `快速整理`、`懶人整理`、`一鍵整理`、`lazy sort` |
 | 不確定 | — | 兩個都不是 → 會問你要哪個 |
 
-**Lazy 的代價**：它保守搬家（不確定就 archive），適合季度清理。Careful 讓你每步都核准，適合第一次跑。
+**Careful Mode** 預設 9 phases：Discover → Classify → Cross-project check → DEPRECATED detect → Dry-run preview → Safety check → Execute → CLAUDE.md annotation → Report。執行前會停讓你確認。
+
+**Lazy Mode** 犧牲精確換速度，但保守搬家（不確定就 archive），並預設打 tar.gz 備份。
 
 ### Lazy 的 Safety Floor
 
 即使跳過所有確認，Lazy 仍保證：
-- 不會刪 skill（全部進 archive）
+- 不會刪 skill（全進 archive）
 - 不動 plugin-managed skills（`~/.claude/plugins/`）
 - 每次執行前自動打 tar.gz 備份，出事一行指令還原
 
@@ -110,14 +123,14 @@ rm -rf ~/.claude/skills && tar -xzf ~/.claude/skills-archive/.backups/skills-YYY
 | ChatGPT Desktop 有 Plus 訂閱 | `用 ChatGPT 問問看` → 驅動桌面 App |
 | 想比較 Claude + Gemini 兩個答案 | 先用 Claude，再用 `opencli-llm-advisors` 拿 Gemini 的 |
 
-**注意**：這是實驗性的。Web UI 可能因為 Google/OpenAI 改版而失效，那時去更新 [opencli adapter](https://github.com/jackwener/opencli) 不是這個 skill。
+> ⚠️ **實驗性**：Web UI 可能因為 Google/OpenAI 改版而失效。那時需更新 [opencli adapter](https://github.com/jackwener/opencli)，不是這個 skill。
 
 ---
 
 ## 常見問題
 
 **Q: 只裝一個可以嗎？**
-A: 可以。兩個完全獨立，想只整理 skills 就只裝 `skill-organizer`；想省 API 額度就只裝 `opencli-llm-advisors`。
+A: 可以。兩個完全獨立。想只整理 skills 就只裝 `skill-organizer`；想省 API 額度就只裝 `opencli-llm-advisors`。
 
 **Q: 整理完 skill 要重開 Claude Code 嗎？**
 A: 不用重開。新 session 自動吃到新的 slimmed skills 清單。
@@ -126,14 +139,14 @@ A: 不用重開。新 session 自動吃到新的 slimmed skills 清單。
 A: `opencli` 綁定瀏覽器目前的 tab。開 `https://gemini.google.com/u/1/app` 才能用第二個 Google 帳號。預設 `/u/0` 是主要帳號。
 
 **Q: Lazy Mode 把 skill 搬到錯的專案了**
-A: 從報告裡的 archive path 還原：`mv ~/.claude/skills-archive/YYYY-MM-DD/<skill>/ ~/.claude/skills/`
+A: 從報告裡的 archive path 復原：`mv ~/.claude/skills-archive/YYYY-MM-DD/<skill>/ ~/.claude/skills/`
 
 ---
 
 ## 檔案結構
 
 ```
-claude-skills/
+claude-skills-toolkit/
 ├── skills/
 │   ├── skill-organizer/          # skills 整理工具
 │   │   └── SKILL.md
@@ -150,7 +163,7 @@ claude-skills/
 
 | 問題 | 解法 |
 |---|---|
-| `skill-organizer` 把 skill 搬到錯誤的專案 | 用 Lazy 的 archive 復原，下次跑 Careful Mode 並在預覽階段用 `adjust` 指令修正 |
+| `skill-organizer` 把 skill 搬到錯誤的專案 | 用 archive 復原，下次跑 Careful Mode 並在預覽階段用 `adjust` 指令修正 |
 | `opencli gemini ask` 噴 429 | 這正是這個 skill 要處理的 — 它會自動改走瀏覽器路徑，不走 API |
 | `opencli gemini ask` 回 garbage 或超時 | selectors 可能過時，跑 `opencli doctor` 確認 Browser Bridge 正常 |
 | Claude Code 沒自動觸發 skill | 開 `/context` 確認有載入。或直接叫用：`整理 skills` |
@@ -161,5 +174,5 @@ claude-skills/
 ## 關於
 
 - [opencli](https://github.com/jackwener/opencli) — 瀏覽器/桌面 App CLI 橋接工具
-- [官方 Agent Skills 文档](https://support.claude.com/en/articles/12512198-how-to-create-custom-skills)
+- [官方 Agent Skills 文檔](https://support.claude.com/en/articles/12512198-how-to-create-custom-skills)
 - MIT License
