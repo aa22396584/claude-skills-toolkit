@@ -1,0 +1,30 @@
+# Claude Code skill repo — ignore local tool state and OS junk
+
+# macOS
+.DS_Store
+
+# Editors
+.idea/
+.vscode/
+*.swp
+
+# Node (if you ever add tooling)
+node_modules/
+npm-debug.log*
+
+# Logs
+*.log
+
+# Claude Code / OMC / OMX local state (not meant to be distributed)
+.omc/
+.omx/
+.opencli/
+.playwright-mcp/
+.worktrees/
+
+# User-specific config instances (the tracked one is examples/.skill-organizer.example.json)
+.skill-organizer.json
+
+# Archives produced by the skill at runtime
+skills-archive/
+*.tar.gz

@@ -1,0 +1,14 @@
+{
+  "_comment": "Keys prefixed with _ are ignored by the skill (treat them as comments-in-JSON since standard JSON has no comment syntax). Copy this file to ~/.skill-organizer.json and edit paths for your setup.",
+  "project_roots": [
+    "/Users/you/Documents/projects",
+    "/Users/you/workspace"
+  ],
+  "archive_dir": "/Users/you/.claude/skills-archive",
+  "backup_before_lazy": true,
+  "_fields": {
+    "project_roots": "array of absolute paths where your projects live. The skill will scan direct children for candidate owner projects.",
+    "archive_dir": "absolute path where orphaned skills get moved. Date-scoped subfolders are created per run.",
+    "backup_before_lazy": "when true (default), Lazy Mode creates a tar.gz of ~/.claude/skills/ into archive_dir before any mv."
+  }
+}
