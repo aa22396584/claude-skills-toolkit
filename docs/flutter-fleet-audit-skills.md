@@ -21,9 +21,33 @@
 - 不輸出 token、keystore 密碼、private key 或包含認證資訊的 URL。
 - 大量 repo 預設每五個保存一次 manifest，可在中斷後續跑。
 
-## Gemini CLI 安裝
+## 合併前使用目前分支
 
-安裝主控技能：
+PR 尚未合併到 `main` 時，先 clone 指定分支，再把技能連結到 Agent Skills 目錄：
+
+```bash
+git clone --branch agent/flutter-fleet-audit-skills --single-branch \
+  https://github.com/ImL1s/claude-skills-toolkit.git
+
+mkdir -p ~/.agents/skills
+for skill in \
+  flutter-fleet-audit \
+  flutter-performance-audit \
+  flutter-architecture-audit \
+  flutter-test-audit \
+  flutter-security-release-audit \
+  flutter-portfolio-synthesis
+do
+  ln -s "$(pwd)/claude-skills-toolkit/skills/$skill" \
+    "$HOME/.agents/skills/$skill"
+done
+```
+
+也可以把同一批目錄連結到 `~/.gemini/skills/`，或專案內的 `.agents/skills/`、`.gemini/skills/`。
+
+## 合併後使用 Gemini CLI 安裝
+
+PR 合併到預設分支後，可直接安裝主控技能：
 
 ```bash
 gemini skills install https://github.com/ImL1s/claude-skills-toolkit.git \
@@ -48,8 +72,6 @@ do
     --consent
 done
 ```
-
-也可將各技能目錄連結到 `~/.agents/skills/`、`~/.gemini/skills/`，或專案內的 `.agents/skills/`、`.gemini/skills/`。
 
 ## 起手提示
 
