@@ -1,0 +1,25 @@
+{
+  "project_roots": [
+    "~/workspace",
+    "~/Documents/mine"
+  ],
+  "exclude_names": [
+    ".git",
+    ".dart_tool",
+    "build",
+    "node_modules",
+    "Pods",
+    "DerivedData",
+    "archive"
+  ],
+  "output_dir": "~/.flutter-fleet-audit",
+  "mode": "standard",
+  "batch_size": 5,
+  "max_projects": 0,
+  "recent_commit_days": 365,
+  "run_analyze": true,
+  "run_tests": true,
+  "run_profile": false,
+  "allow_source_changes": false,
+  "redact_absolute_paths": true
+}
