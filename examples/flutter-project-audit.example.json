@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "project": {
+    "id": "example-app",
+    "name": "example_app",
+    "path": "/workspace/example-app"
+  },
+  "summary": {
+    "risk": "medium",
+    "confidence": "medium",
+    "status": "complete"
+  },
+  "findings": [
+    {
+      "id": "PERF-001",
+      "category": "performance",
+      "title": "Large network images are decoded without target dimensions",
+      "severity": "medium",
+      "confidence": "high",
+      "evidence_level": "static_candidate",
+      "evidence": [
+        {
+          "type": "source",
+          "file": "lib/features/gallery/gallery_card.dart",
+          "line": 42,
+          "detail": "Image.network is used without cacheWidth/cacheHeight"
+        }
+      ],
+      "impact": "May increase decoded-image memory and upload work on image-heavy lists.",
+      "verification": "Capture memory and raster timing on a representative image feed before and after target-size decoding.",
+      "recommendation": "Pass target decode dimensions derived from the rendered size.",
+      "shared_pattern": "network-image-decode-sizing"
+    }
+  ],
+  "commands": [],
+  "limitations": [
+    "No profile-mode trace was available."
+  ]
+}
