@@ -176,3 +176,9 @@ claude-skills-toolkit/
 - [opencli](https://github.com/jackwener/opencli) — 瀏覽器/桌面 App CLI 橋接工具
 - [官方 Agent Skills 文檔](https://support.claude.com/en/articles/12512198-how-to-create-custom-skills)
 - MIT License
+
+---
+
+## 支持
+
+如果這個專案幫你省了點時間，可以[請我喝杯咖啡](https://buymeacoffee.com/iml1s)。
