@@ -1,5 +1,10 @@
 # claude-skills
 
+> **Development home:** https://github.com/ImL1s/claude-skills-toolkit  
+> Please open issues and pull requests there.  
+> **Mirrors:** [Codeberg](https://codeberg.org/ImL1s/claude-skills-toolkit) · [GitLab](https://gitlab.com/aa22396584/claude-skills-toolkit)
+
+
 Claude Code 技能工具箱，兩枚配合使用效果最佳：
 
 | 技能 | 功能 | 使用時機 |
