@@ -14,7 +14,7 @@ A two-skill toolkit for Claude Code power users. Best used together:
 ## Install (pick what you need)
 
 ```bash
-git clone https://github.com/ImL1s/claude-skills-toolkit.git ~/claude-skills-toolkit
+git clone https://github.com/aa22396584/claude-skills-toolkit.git ~/claude-skills-toolkit
 cd ~/claude-skills-toolkit
 
 # Install both

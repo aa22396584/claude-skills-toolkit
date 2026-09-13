@@ -1,8 +1,11 @@
 # claude-skills
 
-> **Development home:** https://github.com/ImL1s/claude-skills-toolkit  
-> Please open issues and pull requests there.  
-> **Mirrors:** [Codeberg](https://codeberg.org/ImL1s/claude-skills-toolkit) · [GitLab](https://gitlab.com/aa22396584/claude-skills-toolkit)
+**Development, Issues & Pull Requests:**  
+https://github.com/aa22396584/claude-skills-toolkit
+
+**Mirrors:**  
+[GitLab](https://gitlab.com/aa22396584/claude-skills-toolkit) ·
+[Codeberg](https://codeberg.org/ImL1s/claude-skills-toolkit)
 
 
 Claude Code 技能工具箱，兩枚配合使用效果最佳：
@@ -19,7 +22,7 @@ Claude Code 技能工具箱，兩枚配合使用效果最佳：
 ## 安裝（選你要的）
 
 ```bash
-git clone https://github.com/ImL1s/claude-skills-toolkit.git ~/claude-skills-toolkit
+git clone https://github.com/aa22396584/claude-skills-toolkit.git ~/claude-skills-toolkit
 cd ~/claude-skills-toolkit
 
 # 兩個都裝
