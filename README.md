@@ -8,6 +8,8 @@ https://github.com/aa22396584/claude-skills-toolkit
 [Codeberg](https://codeberg.org/ImL1s/claude-skills-toolkit)
 
 
+> **Why this GitHub home?** Public development moved here from [`ImL1s/claude-skills-toolkit`](https://github.com/ImL1s/claude-skills-toolkit) because that GitHub account is currently restricted (anonymous visitors get 404 on the profile and many assets). This is the same project. Please open Issues and Pull Requests here.
+
 Claude Code 技能工具箱，兩枚配合使用效果最佳：
 
 | 技能 | 功能 | 使用時機 |
